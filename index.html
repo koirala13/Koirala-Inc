@@ -234,10 +234,111 @@
             body, a, button, input { cursor: auto; }
             .cursor-main, .cursor-trail { display: none; }
         }
+        /* --- INFINITE SLIDER ANIMATION --- */
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 40px; /* Space between items */
+            width: max-content;
+            animation: scroll 35s linear infinite; /* Adjust '35s' to change speed */
+        }
+        
+        /* Pause animation when user hovers over it */
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Adjustments for Sliding Items */
+        .partner-logo {
+            flex-shrink: 0;
+            width: 200px; /* Fixed width is required for smooth sliding */
+        }
+
+        .testimonial-card {
+            flex-shrink: 0;
+            width: 400px; /* Fixed width for consistency */
+            white-space: normal; /* Ensures text wraps inside the moving card */
+        }
+        
+        /* Mobile adjustment */
+        @media (max-width: 768px) {
+            .testimonial-card { width: 300px; }
+            .partner-logo { width: 160px; }
+        }
+        /* --- PRELOADER CSS (CLEAN WHITE) --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #ffffff; /* FULL WHITE BACKGROUND */
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .preloader-content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preloader-content img {
+            width: 150px; /* Logo size - adjust if needed */
+            height: auto;
+            
+            /* The Breathing Animation */
+            animation: breathe 3s infinite ease-in-out;
+        }
+
+        /* Optional: A subtle gray ripple to show activity */
+        .preloader-content::before {
+            content: '';
+            position: absolute;
+            width: 100px; height: 100px;
+            background: rgba(0, 0, 0, 0.05); /* Very faint gray */
+            border-radius: 50%;
+            z-index: -1;
+            animation: soft-ripple 3s infinite ease-out;
+        }
+
+        /* Animation: Smooth Breathing */
+        @keyframes breathe {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; } /* Grows slightly */
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Animation: Faint Ripple */
+        @keyframes soft-ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
     </style>
 </head>
 <body>
-
+<!-- PRELOADER SCREEN -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <!-- Ensure 'favicon.png' exists, or change this to your logo image file -->
+            <img src="my-logo.png" alt="Koirala Inc Loading...">
+        </div>
+    </div>
     <!-- CUSTOM CURSOR -->
     <div class="cursor-main"></div>
     <div class="cursor-trail">
@@ -432,6 +533,7 @@
     </section>
 
     <!-- Global Partners & Clients Grid (ADDED) -->
+   <!-- Global Partners & Clients Grid (SLIDING) -->
     <section id="global-partners" class="section-padding" style="background-color: var(--light-bg);">
         <div class="container">
             <div class="text-center">
@@ -439,25 +541,39 @@
                 <p class="section-subtitle">Trusted by industry leaders across the globe.</p>
             </div>
 
-            <div class="partners-grid">
-                <!-- 
-                   TIP: Replace the <i> tags with <img src="logo.png"> for real logos.
-                -->
-                <!-- Client 1 -->
-                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.studiobritanta.com/">
-    <img src="britanta-logo.png" alt="Studio Britanta Logo">
-</div>
-                <!-- Client 2 -->
-                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.facebook.com/3iRNepal">
-                    <img src="3ir-logo.png" alt="3ir Logo">
-                </div>
-                <!-- Client 3 -->
-                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
-                    <i class="fab fa-microsoft"></i>
-                </div>
-                <!-- Client 4 -->
-                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
-                    <i class="fas fa-university"></i>
+            <!-- Slider Container -->
+            <div class="slider-container">
+                <div class="slider-track">
+                    
+                    <!-- ORIGINAL SET (4 Items) -->
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.studiobritanta.com/">
+                        <img src="britanta-logo.png" alt="Studio Britanta">
+                    </div>
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.facebook.com/3iRNepal">
+                        <img src="3ir-logo.png" alt="3ir">
+                    </div>
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
+                        <i class="fas fa-university"></i>
+                    </div>
+
+                    <!-- DUPLICATE SET (Must match exactly above to loop seamlessly) -->
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.studiobritanta.com/">
+                        <img src="britanta-logo.png" alt="Studio Britanta">
+                    </div>
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.facebook.com/3iRNepal">
+                        <img src="3ir-logo.png" alt="3ir">
+                    </div>
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <!-- End Duplicate Set -->
+
                 </div>
             </div>
         </div>
@@ -465,38 +581,51 @@
 
     <!-- Testimonials (UPDATED with Specific Clients) -->
     <section class="section-padding" style="background-color: var(--white);">
-        <div class="container">
+        <div class="container" style="overflow: hidden;"> <!-- Overflow hidden added to container -->
             <div class="text-center">
                 <h2 class="section-title">Client Remarks</h2>
                 <p class="section-subtitle">What our partners say about us</p>
             </div>
-            <div class="testimonial-grid">
-                <!-- Card 1 -->
-                <div class="testimonial-card">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p>"Koirala Incorporation transformed our operational efficiency. Their event management for our annual expo was flawless."</p>
-                    <div class="client-info">
-                        Gaurav Deo Bhatt
-                        <div class="client-role">CEO</div>
+            
+            <!-- Slider Container -->
+            <div class="slider-container">
+                <div class="slider-track">
+
+                    <!-- ORIGINAL SET (3 Items) -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"Koirala Incorporation transformed our operational efficiency. Their event management for our annual expo was flawless."</p>
+                        <div class="client-info">Gaurav Deo Bhatt <div class="client-role">CEO</div></div>
                     </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="testimonial-card">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p>"Their strategic consulting provided us with the legal and financial clarity we needed to expand internationally."</p>
-                    <div class="client-info">
-                        Ananda Raj Devkota 
-                        <div class="client-role">Director, International Institute of Independent Researchers</div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"Their strategic consulting provided us with the legal and financial clarity we needed to expand internationally."</p>
+                        <div class="client-info">Ananda Raj Devkota <div class="client-role">Director, 3iR</div></div>
                     </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="testimonial-card">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p>"A trusted partner for EOR and networking. They bridged the gap between us and major distributors perfectly."</p>
-                    <div class="client-info">
-                        Sumit Gyawali
-                        <div class="client-role">MD, Studio Britanta</div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"A trusted partner for EOR and networking. They bridged the gap between us and major distributors perfectly."</p>
+                        <div class="client-info">Sumit Gyawali <div class="client-role">MD, Studio Britanta</div></div>
                     </div>
+
+                    <!-- DUPLICATE SET (Must match exactly above) -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"Koirala Incorporation transformed our operational efficiency. Their event management for our annual expo was flawless."</p>
+                        <div class="client-info">Gaurav Deo Bhatt <div class="client-role">CEO</div></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"Their strategic consulting provided us with the legal and financial clarity we needed to expand internationally."</p>
+                        <div class="client-info">Ananda Raj Devkota <div class="client-role">Director, 3iR</div></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"A trusted partner for EOR and networking. They bridged the gap between us and major distributors perfectly."</p>
+                        <div class="client-info">Sumit Gyawali <div class="client-role">MD, Studio Britanta</div></div>
+                    </div>
+                    <!-- End Duplicate Set -->
+
                 </div>
             </div>
         </div>
@@ -598,6 +727,18 @@
 
     <!-- JS Logic -->
     <script>
+    // 0. PRELOADER LOGIC
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('preloader');
+            
+            // 5000 = 5 seconds
+            // 10000 = 10 seconds
+            // Change the number below to adjust time
+            setTimeout(function() {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 4000); 
+        });
         // 1. Mobile Menu
         function toggleMenu() {
             const nav = document.getElementById('navLinks');
