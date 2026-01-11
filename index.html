@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META TAGS -->
+    <title>Koirala Incorporation | Institutional Infrastructure for Global Impact</title>
+    <meta name="description" content="Koirala Incorporation: The local implementation office for global consultancies. Specializing in EOR, Conglomerate Management, Event Facilitation, and Strategic Consulting in Nepal.">
+    
+    <!-- FAVICON SETUP (Step-by-Step Instructions above) -->
+    <!-- 1. Save your cropped 'K' logo as 'favicon.png' in the same folder as this file. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png"> 
+    
+    <!-- Google Fonts: Inter for Executive look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0f172a; 
+            --header-bg: #000000;     
+            --secondary-color: #334155; 
+            --accent-color: #3b82f6;  
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-color: #1e293b;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.6; 
+            background-color: var(--white);
+            cursor: none; 
+        }
+
+        /* --- STRICT REMOVAL OF LINES & DOTS --- */
+        ul, ol, li { list-style: none !important; margin: 0; padding: 0; }
+        a { text-decoration: none !important; color: inherit; cursor: none; outline: none; }
+        button, input, textarea { cursor: none; outline: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- TEXT READABILITY --- */
+        .service-card p, .choose-text p, .about-text p {
+            color: var(--secondary-color);
+            line-height: 1.8; 
+            letter-spacing: 0.2px; 
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-main {
+            position: fixed; top: 0; left: 0; width: 30px; height: 30px;
+            border: 2px solid var(--accent-color); border-radius: 50%;
+            pointer-events: none; z-index: 10000; transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .cursor-main.active { width: 50px; height: 50px; background-color: rgba(59, 130, 246, 0.1); border-color: transparent; }
+        .dot {
+            position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+            background-color: var(--accent-color); border-radius: 50%;
+            pointer-events: none; z-index: 9999; opacity: 0.6;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+        .section-title { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; font-weight: 700; }
+        .section-subtitle { color: var(--secondary-color); margin-bottom: 3rem; font-size: 1.1rem; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--header-bg); color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; padding: 1rem 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; color: var(--white); transition: var(--transition); font-size: 0.95rem; opacity: 0.9; }
+        .nav-links a:hover { color: var(--accent-color); opacity: 1; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--white); }
+
+        /* --- HERO --- */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; height: 85vh; display: flex; align-items: center; color: var(--white); text-align: center;
+        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.2; font-weight: 700; }
+        .btn { display: inline-block; padding: 14px 32px; background-color: var(--accent-color); color: var(--white); border-radius: 4px; font-weight: 600; transition: var(--transition); border: none; cursor: none; }
+        .btn:hover { background-color: #2563eb; transform: translateY(-2px); }
+
+        /* --- VALUES BAR --- */
+        .core-values-bar { background: var(--light-bg); padding: 25px 0; border-bottom: 1px solid #e2e8f0; }
+        .values-container { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+        .value-item { font-size: 0.95rem; font-weight: 600; color: var(--secondary-color); display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .value-item i { color: var(--accent-color); font-size: 0.9rem; }
+
+        /* --- MISSION --- */
+        #mission-vision { background-color: var(--white); }
+        .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .mv-card { background: var(--light-bg); padding: 40px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: var(--transition); border-left: 4px solid var(--accent-color); }
+        .mv-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px rgba(0,0,0,0.08); }
+        .mv-card h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 1.5rem; }
+
+        /* --- SERVICES (Merged Layout) --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; } 
+        .service-card { 
+            background: var(--white); border: 1px solid #e2e8f0; padding: 35px 30px; border-radius: 6px; 
+            transition: var(--transition);
+            display: flex; flex-direction: column; justify-content: start; min-height: 400px; /* Taller for detailed text */
+        }
+        .service-card:hover { border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .service-icon { font-size: 2.2rem; color: var(--accent-color); margin-bottom: 20px; text-align: center; }
+        .service-card h4 { margin-bottom: 15px; color: var(--primary-color); font-size: 1.2rem; font-weight: 600; text-align: center; }
+
+        /* --- GLOBAL BANNER --- */
+        .global-banner { background-color: var(--primary-color); color: var(--white); padding: 60px 0; text-align: center; }
+        .global-banner h3 { font-size: 2rem; margin-bottom: 10px; font-weight: 700; }
+        .global-banner p { color: #94a3b8; font-size: 1.1rem; letter-spacing: 0.5px; }
+        .global-icon { font-size: 2rem; margin-bottom: 15px; color: var(--accent-color); }
+
+        /* --- PROCESS --- */
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 40px; }
+        .step-card { text-align: center; position: relative; }
+        .step-number { width: 50px; height: 50px; background: var(--accent-color); color: var(--white); border-radius: 50%; font-size: 1.2rem; font-weight: 700; line-height: 50px; margin: 0 auto 20px; box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); }
+        .step-card h5 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); }
+
+        /* --- WHY CHOOSE US --- */
+        #why-choose { background-color: var(--light-bg); }
+        .choose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .choose-list li { margin-bottom: 30px; display: flex; align-items: flex-start; gap: 20px; }
+        .check-icon { background: var(--accent-color); color: var(--white); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.8rem; margin-top: 5px; }
+        .choose-text h5 { font-size: 1.25rem; margin-bottom: 8px; color: var(--primary-color); font-weight: 600; }
+        .choose-image img { border-radius: 6px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+
+        /* --- PARTNERS & CLIENTS GRID (NEW FEATURE) --- */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .partner-logo {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            height: 120px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover Effect: Scale & Border Highlight */
+        .partner-logo:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Grayscale to Color Transition */
+        .partner-logo img, 
+        .partner-logo i {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .partner-logo:hover img,
+        .partner-logo:hover i {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .partner-logo i { font-size: 3rem; color: var(--accent-color); }
+
+        /* --- TESTIMONIALS --- */
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: var(--white); padding: 35px; border-radius: 6px; border: 1px solid #e2e8f0; }
+        .quote-icon { font-size: 2rem; color: var(--accent-color); opacity: 0.3; margin-bottom: 15px; }
+        .client-info { margin-top: 20px; font-weight: 600; color: var(--primary-color); }
+        .client-role { font-size: 0.9rem; color: var(--secondary-color); font-weight: 400; line-height: 1.4; margin-top: 5px; }
+
+        /* --- ABOUT --- */
+        #about { background-color: var(--white); }
+        .about-wrapper { display: flex; align-items: center; gap: 60px; }
+        .about-text { flex: 1; }
+        .about-image { flex: 1; }
+        .about-image img { width: 100%; border-radius: 6px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+
+        /* --- CONTACT --- */
+        .contact-form-wrapper { max-width: 600px; margin: 0 auto; background: var(--white); padding: 45px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary-color); font-size: 0.9rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 1rem; transition: var(--transition); background: #f8fafc; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-color); background: #fff; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1); }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--primary-color); color: #cbd5e1; padding-top: 70px; border-top: 1px solid #1e293b; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 1.2rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { text-decoration: none !important; }
+        .footer-col ul li a:hover { color: var(--accent-color); }
+        .footer-bottom { border-top: 1px solid #334155; padding: 25px 0; text-align: center; font-size: 0.9rem; }
+        .contact-info-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: start; }
+        .contact-info-item i { color: var(--accent-color); margin-top: 5px; }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; right: 0; background: var(--header-bg); width: 100%; text-align: center; padding: 20px 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .mv-grid, .about-wrapper, .choose-grid, .process-grid { grid-template-columns: 1fr; }
+            .about-wrapper { flex-direction: column-reverse; }
+            .values-container { gap: 30px; }
+            body, a, button, input { cursor: auto; }
+            .cursor-main, .cursor-trail { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-main"></div>
+    <div class="cursor-trail">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Koirala Inc.</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#mission-vision" onclick="toggleMenu()">Mission</a></li>
+                <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container hero-content">
+            <h1>The Institutional Infrastructure <br>for Every Scale of Industry.</h1>
+            <p style="max-width: 800px; margin: 0 auto 2rem;">From high-growth local enterprises to global organizations, we provide the 
+            strategic architecture and on-demand implementation required to navigate 
+            Nepal’s landscape. We are the backbone of your project delivery, 
+            regulatory compliance, and operational excellence.</p>
+            <a href="#contact" class="btn">Discuss a Partnership</a>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <div class="core-values-bar">
+        <div class="container values-container">
+            <div class="value-item"><i class="fas fa-square"></i> Integrity</div>
+            <div class="value-item"><i class="fas fa-square"></i> Innovation</div>
+            <div class="value-item"><i class="fas fa-square"></i> Global Standards</div>
+            <div class="value-item"><i class="fas fa-square"></i> Operational Excellence</div>
+        </div>
+    </div>
+
+    <!-- Mission & Vision -->
+    <section id="mission-vision" class="section-padding">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>To elevate the business ecosystem by delivering world-class event management, operational excellence, and strategic consultancy. We strive to foster sustainable growth and professional human resource development through integrity and global partnerships.</p>
+                </div>
+                <div class="mv-card">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To be the premier catalyst for industrial innovation and professional networking, setting new benchmarks in business facilitation, legal consultancy, and international trade relations across Nepal and beyond.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section-padding" style="background-color: var(--light-bg);">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">What We Do</h2>
+                <p class="section-subtitle">Connecting local potential with global standards.</p>
+            </div>
+            <div class="services-grid">
+                
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-landmark"></i></div>
+                    <h4>On-Demand EOR & Institutional Presence</h4>
+                    <p style="text-align: justify; font-size: 0.95rem;">
+                        Deploy teams in Nepal without the overhead of a local legal entity. We manage the entire legal architecture—from labor law compliance and SSF integration to complex government coordination. We provide comprehensive Employer of Record services so you can focus exclusively on project delivery.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                    <h4>Conglomerate Management & Consulting</h4>
+                    <p style="text-align: justify; font-size: 0.95rem;">
+                        A comprehensive management ecosystem built to secure the corporate future of multi-faceted organizations. We provide integrated solutions for auditing, marketing, IT, and legal challenges, offering expert guidance to optimize business performance for long-term success.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h4>Event Management & Business Facilitation</h4>
+                    <p style="text-align: justify; font-size: 0.95rem;">
+                        Taking ownership of complex industry operations to drive efficiency. From managing high-impact national and international seminars, trainings, and expos to streamlining internal processes, we handle the logistics so you can focus on the big picture.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h4>Regional Operations & Knowledge Hub</h4>
+                    <p style="text-align: justify; font-size: 0.95rem;">
+                        Scale South Asia mandates with a high-efficiency alternative to traditional hubs. We provide data-driven research support and facilitate strategic networking, bridging the gap between suppliers, distributors, and shareholders to build powerful industrial partnerships.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Banner -->
+    <section class="global-banner">
+        <div class="container">
+            <div class="global-icon"><i class="fas fa-globe"></i></div>
+            <h3>Headquartered in Nepal, Serving Clients Worldwide</h3>
+            <p>Bridging the gap between local talent and international markets.</p>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">How We Work</h2>
+                <p class="section-subtitle">A streamlined process for your success</p>
+            </div>
+            <div class="process-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h5>Consultation</h5>
+                    <p>We analyze your needs and challenges.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h5>Strategy</h5>
+                    <p>We design a custom roadmap.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h5>Execution</h5>
+                    <p>We implement with precision.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h5>Growth</h5>
+                    <p>We monitor results and scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-choose" class="section-padding">
+        <div class="container">
+            <div class="choose-grid">
+                <div class="choose-text">
+                    <h2 class="section-title">Expertise in Managing Complex Organizational Frameworks</h2>
+                    <p class="section-subtitle" style="margin-bottom: 30px;">Building Pathways to Success.</p>
+                    <ul class="choose-list">
+                        <li>
+                            <div class="check-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="choose-text">
+                                <h5>Rapid Operational Mobilization</h5>
+                                <p>Facilitate immediate project starts with "boots on the ground" expertise. Bypass the multi-year complexity of local entity setup by leveraging our established legal framework.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="choose-text">
+                                <h5>Strategic Stability</h5>
+                                <p>We focus on building resilient foundations for long-term growth rather than pursuing temporary, short-term wins.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="choose-text">
+                                <h5>Executive Partnership</h5>
+                                <p>We act as an extension of your C-suite, handling regulatory and operational complexities so you can focus on vision.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="choose-image">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Handshake">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Partners & Clients Grid (ADDED) -->
+    <section id="global-partners" class="section-padding" style="background-color: var(--light-bg);">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Global Partners & Clients</h2>
+                <p class="section-subtitle">Trusted by industry leaders across the globe.</p>
+            </div>
+
+            <div class="partners-grid">
+                <!-- 
+                   TIP: Replace the <i> tags with <img src="logo.png"> for real logos.
+                -->
+                <!-- Client 1 -->
+                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.studiobritanta.com/">
+    <img src="britanta-logo.png" alt="Studio Britanta Logo">
+</div>
+                <!-- Client 2 -->
+                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="https://www.facebook.com/3iRNepal">
+                    <img src="3ir-logo.png" alt="3ir Logo">
+                </div>
+                <!-- Client 3 -->
+                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
+                    <i class="fab fa-microsoft"></i>
+                </div>
+                <!-- Client 4 -->
+                <div class="partner-logo" onclick="handlePartnerClick(this)" data-url="#">
+                    <i class="fas fa-university"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (UPDATED with Specific Clients) -->
+    <section class="section-padding" style="background-color: var(--white);">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Client Remarks</h2>
+                <p class="section-subtitle">What our partners say about us</p>
+            </div>
+            <div class="testimonial-grid">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Koirala Incorporation transformed our operational efficiency. Their event management for our annual expo was flawless."</p>
+                    <div class="client-info">
+                        Gaurav Deo Bhatt
+                        <div class="client-role">CEO</div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Their strategic consulting provided us with the legal and financial clarity we needed to expand internationally."</p>
+                    <div class="client-info">
+                        Ananda Raj Devkota 
+                        <div class="client-role">Director, International Institute of Independent Researchers</div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"A trusted partner for EOR and networking. They bridged the gap between us and major distributors perfectly."</p>
+                    <div class="client-info">
+                        Sumit Gyawali
+                        <div class="client-role">MD, Studio Britanta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section-padding" style="background-color: var(--light-bg);">
+        <div class="container about-wrapper">
+            <div class="about-text">
+                <h2 class="section-title">Institutional Infrastructure, Reimagined.</h2>
+                <p style="margin-bottom: 20px; font-weight: 500; color: var(--primary-color);">
+                    Koirala Incorporation operates as a Lean Project Management Office (PMO), built on the principle of Strategic Agility.
+                </p>
+                <p style="margin-bottom: 20px;">
+                    Being founder-led and intentionally lean is our primary competitive advantage; it allows us to mobilize resources rapidly and adapt to shifting regulatory environments without the inertia of traditional firms.
+                </p>
+                <p>
+                    We function as a Flexible Local Implementation Hub. Founded with a passion for excellence, we have established ourselves as a cornerstone of reliability, believing in building lasting relationships based on trust and results.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team meeting">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Ready to start? Send us a message directly via WhatsApp.</p>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form id="whatsappForm" onsubmit="sendToWhatsapp(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Interested In</label>
+                        <input type="text" id="service" placeholder="e.g. EOR Services" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">
+                        <i class="fab fa-whatsapp"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="color:white; margin-bottom: 15px;">Koirala Inc.</div>
+                    <p style="font-size: 0.9rem;">Empowering businesses with strategic insight and operational excellence since 2010.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Location & Contact</h4>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Head Office:</strong><br>
+                            Kathmandu, Nepal
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>koiralainc26@gmail.com</div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <a href="https://maps.google.com" target="_blank" style="text-decoration: underline; color: var(--accent-color);">
+                            Find us on Google Maps &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Koirala Incorporation. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        // 1. Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // 2. WhatsApp
+        function sendToWhatsapp(e) {
+            e.preventDefault(); 
+            const phoneNumber = "9779864240709"; 
+            const name = document.getElementById('name').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            const text = `*New Inquiry from Website*%0A%0A*Name:* ${name}%0A*Service:* ${service}%0A*Message:* ${message}`;
+            const url = `https://wa.me/${phoneNumber}?text=${text}`;
+            window.open(url, '_blank');
+        }
+
+        // 3. CURSOR TRAIL ANIMATION
+        const mainCursor = document.querySelector('.cursor-main');
+        const dots = document.querySelectorAll('.dot');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            mainCursor.style.left = mouseX + 'px';
+            mainCursor.style.top = mouseY + 'px';
+        });
+
+        // Add 'active' class on clickables + Partner Logos
+        const clickables = document.querySelectorAll('a, button, input, textarea, .partner-logo');
+        clickables.forEach(el => {
+            el.addEventListener('mouseenter', () => { mainCursor.classList.add('active'); });
+            el.addEventListener('mouseleave', () => { mainCursor.classList.remove('active'); });
+        });
+
+        const dotsPos = Array.from(dots).map(() => ({ x: 0, y: 0 }));
+        
+        function animateSmooth() {
+            let targetX = mouseX;
+            let targetY = mouseY;
+            dotsPos.forEach((pos, index) => {
+                pos.x += (targetX - pos.x) * 0.3;
+                pos.y += (targetY - pos.y) * 0.3;
+                dots[index].style.left = pos.x + 'px';
+                dots[index].style.top = pos.y + 'px';
+                targetX = pos.x;
+                targetY = pos.y;
+            });
+            requestAnimationFrame(animateSmooth);
+        }
+        animateSmooth();
+
+        // 4. PARTNER LOGO CLICK HANDLER
+        function handlePartnerClick(element) {
+            const url = element.getAttribute('data-url');
+            if (url && url !== '#' && url.trim() !== '') {
+                window.open(url, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
