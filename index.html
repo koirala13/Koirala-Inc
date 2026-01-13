@@ -16,7 +16,8 @@
     
     <!-- Google Fonts: Inter for Executive look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <!-- NEPALI DATE CONVERTER -->
+<script src="https://cdn.jsdelivr.net/npm/nepali-date-converter/dist/nepali-date-converter.min.js"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -89,6 +90,35 @@
         .nav-links a { font-weight: 500; color: var(--white); transition: var(--transition); font-size: 0.95rem; opacity: 0.9; }
         .nav-links a:hover { color: var(--accent-color); opacity: 1; }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--white); }
+        /* --- HEADER INFO (CLOCK & DATE) --- */
+        .header-info {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            border-left: 1px solid #334155;
+            padding-left: 15px;
+            /* Optional: prevents it from hugging the logo too closely */
+            margin-left: auto; 
+            margin-right: 30px;
+            line-height: 1.2;
+        }
+
+        #clock {
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            font-family: monospace; /* Makes numbers look better */
+            font-size: 0.9rem;
+        }
+
+        #dates {
+            opacity: 0.8;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-info { display: none; } /* Hide on mobile to save space */
+        }
 
         /* --- HERO --- */
         #hero {
@@ -349,11 +379,23 @@
         <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
 
-    <!-- Header -->
-    <header>
+   <!-- Header -->
+   <header>
         <div class="container nav-container">
-            <!-- Click to Reload -->
-<div class="logo" onclick="window.location.reload()">Koirala Inc.</div>
+            <!-- Logo -->
+            <div class="logo" onclick="window.location.reload()">Koirala Inc.</div>
+            
+            <!-- CLOCK & DATE SECTION -->
+            <div id="header-info" class="header-info">
+                <div id="clock">00:00:00</div>
+                <div id="dates">
+                    <!-- English Date -->
+                    <span id="en-date"></span> | 
+                    <!-- Nepali Date (This will get the new Nepali Text) -->
+                    <span id="np-date">Connecting...</span>
+                </div>
+            </div>
+
             <div class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </div>
@@ -371,7 +413,7 @@
     <section id="home">
         <div class="container hero-content">
             <h1>The Institutional Infrastructure <br>for Every Scale of Industry.</h1>
-            <p style="max-width: 800px; margin: 0 auto 2rem;">Whether you are a local startup or a global corporation, we provide the setup, strategy, and hands-on support you need to succeed. We handle your legal compliance, project management, and daily operations so you can focus on your vision.</p>
+            <p style="max-width: 800px; margin: 0 auto 2rem;">Whether you are a local startup or a global corporation, we provide the setup, strategy, and hands-on support you need to succeed in Nepal. We handle your legal compliance, project management, and daily operations so you can focus on your vision.</p>
             <a href="#contact" class="btn">Discuss a Partnership</a>
         </div>
     </section>
@@ -798,6 +840,36 @@
                 window.open(url, '_blank');
             }
         }
+        // 5. CLOCK & NEPALI DATE
+    function updateClock() {
+        const now = new Date();
+        
+        // 1. English Date & Time
+        document.getElementById('en-date').innerText = now.toLocaleDateString('en-US', { 
+            year: 'numeric', month: 'short', day: 'numeric' 
+        });
+        document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', {
+            hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit'
+        });
+
+        // 2. Nepali Date Logic
+        try {
+            // Check if library loaded
+            if (typeof NepaliDate !== 'undefined') {
+                const nepaliDate = new NepaliDate(now); 
+                document.getElementById('np-date').innerText = nepaliDate.format('DD MMMM YYYY, dddd', 'np');
+            } else {
+                document.getElementById('np-date').innerText = "Loading Library...";
+            }
+        } catch (e) {
+            // This will print the actual error message on your screen
+            document.getElementById('np-date').innerText = "Error: " + e.message; 
+            console.error(e);
+        }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
     </script>
 </body>
 </html>
