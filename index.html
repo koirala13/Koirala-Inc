@@ -352,7 +352,8 @@
     <!-- Header -->
     <header>
         <div class="container nav-container">
-            <div class="logo">Koirala Inc.</div>
+            <!-- Click to Reload -->
+<div class="logo" onclick="window.location.reload()">Koirala Inc.</div>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </div>
@@ -729,15 +730,16 @@
     <script>
     // 0. PRELOADER LOGIC
         window.addEventListener('load', function() {
+            // FORCE SCROLL TO TOP ON RELOAD
+            window.scrollTo(0, 0);
+
             const loader = document.getElementById('preloader');
             
             // 5000 = 5 seconds
-            // 10000 = 10 seconds
-            // Change the number below to adjust time
             setTimeout(function() {
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
-            }, 4000); 
+            }, 3000); 
         });
         // 1. Mobile Menu
         function toggleMenu() {
