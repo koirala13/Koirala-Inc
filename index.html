@@ -6,7 +6,7 @@
     
     <!-- SEO & META TAGS -->
     <title>Koirala Incorporation | Institutional Infrastructure for Global Impact</title>
-    <meta name="description" content="Koirala Incorporation: The local implementation office for global consultancies. Specializing in EOR, Conglomerate Management, Event Facilitation, and Strategic Consulting in Nepal.">
+    <meta name="description" content="Koirala Incorporation: The local implementation office for global consultancies. Specializing in EOR, Conglomerate Management, Event Facilitation, and Strategic Consulting.">
     
     <!-- FAVICON SETUP (Step-by-Step Instructions above) -->
     <!-- 1. Save your cropped 'K' logo as 'favicon.png' in the same folder as this file. -->
@@ -16,8 +16,6 @@
     
     <!-- Google Fonts: Inter for Executive look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- NEPALI DATE CONVERTER -->
-<script src="https://cdn.jsdelivr.net/npm/nepali-date-converter/dist/nepali-date-converter.min.js"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -390,9 +388,7 @@
                 <div id="clock">00:00:00</div>
                 <div id="dates">
                     <!-- English Date -->
-                    <span id="en-date"></span> | 
-                    <!-- Nepali Date (This will get the new Nepali Text) -->
-                    <span id="np-date">Connecting...</span>
+                    <span id="en-date"></span> 
                 </div>
             </div>
 
@@ -413,7 +409,7 @@
     <section id="home">
         <div class="container hero-content">
             <h1>The Institutional Infrastructure <br>for Every Scale of Industry.</h1>
-            <p style="max-width: 800px; margin: 0 auto 2rem;">Whether you are a local startup or a global corporation, we provide the setup, strategy, and hands-on support you need to succeed in Nepal. We handle your legal compliance, project management, and daily operations so you can focus on your vision.</p>
+            <p style="max-width: 800px; margin: 0 auto 2rem;">Whether you are a local startup or a global corporation, we provide the setup, strategy, and hands-on support you need to succeed. We handle your legal compliance, project management, and daily operations so you can focus on your vision.</p>
             <a href="#contact" class="btn">Discuss a Partnership</a>
         </div>
     </section>
@@ -859,7 +855,7 @@
                 const nepaliDate = new NepaliDate(now); 
                 document.getElementById('np-date').innerText = nepaliDate.format('DD MMMM YYYY, dddd', 'np');
             } else {
-                document.getElementById('np-date').innerText = "Loading Library...";
+                document.getElementById('np-date').innerText = "NEPAL TIME";
             }
         } catch (e) {
             // This will print the actual error message on your screen
@@ -871,5 +867,24 @@
     setInterval(updateClock, 1000);
     updateClock();
     </script>
-</body>
+<!-- ... Your existing Javascript ends here ... -->
+    <script>
+       // Your Clock and other scripts are up here...
+    </script>
+
+    <!-- START OF TAWK.TO SCRIPT -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6968ea8f05cdea197d1496d3/1jf0t8gih';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!-- END OF TAWK.TO SCRIPT -->
+
+</body> <!-- This is the very end of your visible code -->
 </html>
