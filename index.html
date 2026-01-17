@@ -1024,32 +1024,20 @@
                 window.open(url, '_blank');
             }
         }
-        // 5. CLOCK & NEPALI DATE
+  // 5. CLOCK & ENGLISH DATE
     function updateClock() {
         const now = new Date();
         
-        // 1. English Date & Time
+        // 1. English Date
+        // This targets the 'en-date' span which DOES exist
         document.getElementById('en-date').innerText = now.toLocaleDateString('en-US', { 
             year: 'numeric', month: 'short', day: 'numeric' 
         });
+
+        // 2. Clock
         document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', {
             hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit'
         });
-
-        // 2. Nepali Date Logic
-        try {
-            // Check if library loaded
-            if (typeof NepaliDate !== 'undefined') {
-                const nepaliDate = new NepaliDate(now); 
-                document.getElementById('np-date').innerText = nepaliDate.format('DD MMMM YYYY, dddd', 'np');
-            } else {
-                document.getElementById('np-date').innerText = "NEPAL TIME";
-            }
-        } catch (e) {
-            // This will print the actual error message on your screen
-            document.getElementById('np-date').innerText = "Error: " + e.message; 
-            console.error(e);
-        }
     }
 
     setInterval(updateClock, 1000);
